@@ -1,0 +1,32 @@
+{
+  "name": "abstractor",
+  "version": "0.0.1",
+  "description": "Node.js abstraction layer and automation framework.",
+  "author": "Hexagon <github.com/hexagon>",
+  "contributors": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hexagon/abstractor"
+  },
+  "bugs": {
+    "url": "https://github.com/hexagon/abstractor/issues"
+  },
+  "keywords": [
+    "abstractor",
+    "automation",
+    "tellstick",
+    "nexa",
+    "telldus",
+    "abstraction",
+    "framework",
+    "node",
+    "node-red"
+  ],
+  "dependencies": { 
+    "croner": "*",
+    "node-uuid": "*",
+    "qbus": "*"
+  },
+  "devDependencies": {},
+  "license": "MIT"
+}
