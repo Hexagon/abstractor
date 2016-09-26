@@ -6,7 +6,7 @@
 
 Node.js abstraction layer and automation framework.
 
-Note that this is a fully working library, but it is work in progress. Expect compability breaks even between minor version bumps.
+Note that this is a fully working library, but it is work in progress. Expect compatibility breaks even between minor version bumps.
 
 
 
@@ -18,9 +18,9 @@ Note that this is a fully working library, but it is work in progress. Expect co
 
 ## Dependencies
 
-Abstractor itself has very few dependencies. However, certain built-in modules dynamically includes third party libraries. As an example, The telldus-modules need http://github.com/hexagon/telldus to work.
+Abstractor itself has very few dependencies. However, certain embedded modules dynamically includes third party libraries. As an example, The telldus modules need http://github.com/hexagon/telldus to work.
 
-The framework will raise an run-time error if a dependency is missing.
+The framework will raise an run time error if it is missing an dependency.
 
 
 
