@@ -8,7 +8,7 @@
 
   License:
 
-	MIT:
+	MIT:B
 
 	Copyright (c) 2016 Hexagon <github.com/Hexagon>
 

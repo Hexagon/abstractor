@@ -19,7 +19,8 @@
         "complexity": [
             2,
             15
-        ]
+        ],
+        "no-console": 0
     },
     "globals": {
         "define": false,
