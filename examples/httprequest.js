@@ -3,7 +3,7 @@ var
 	flow = 		require('../lib')();
 
 // Set up node instances
-debugNodeSuccess 	= flow( "debug", { member: 'payload', raw: true });
+debugNodeSuccess 	= flow( "generic", function (msg) { console.log(msg); });
 httpNode 			= flow( "http-client" );
 
 // Cron test flow
