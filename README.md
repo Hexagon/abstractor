@@ -80,33 +80,119 @@ For more; see examples/ folder.
 
 ## Message Cache
 
+In memory key/value storage, great for storing the last payload
+of a specific topic.
+    
 ## Cron scheduler
+
+Competent cron-like scheduler based on croner (github.com/hexagon/croner)
 
 ## CSV Generator/Parser
 
+CSV parser and generator. Parser uses fast-csv.
+
+If input payload is an array width objects, the contained objects are
+converted to CSV rows.
+
+If input payload is a string, the string is parsed to an array of objects.
+
 ## Delay
+
+Waits for x milliseconds before passing the message.
 
 ## Exec
 
+Executes a command, returns exit code, stdout and stderr.
+
 ## File-Read
 
+Reads a file, capable of reading first/last x rows and first/last x 
+characters.
+    
 ## File-Watch
 
+Watches a file for changes, emits a message on change.
+    
 ## File-Write
+
+Writes payload (string/buffer) to a file, encoding and flag are configurable.
+
+Possible flags:
+   a  = append
+   w  = overwrite
 
 ## Generic node factory
 
+Converts a regular function to a abstractor node.
+
 ## Heartbeat
 
+Monitors the frequency of messages received, outputs "timeout" when no 
+message has arrived in x ms.
+    
 ## HTML Parser
+
+Parses the payload HTML and outputs an object representing the html.
+
+The get-parameter can contain any of these: 
+  object    - Object representation of the selected element
+  attribute - Gets the value of a specific attribute 
+	      (specified by attribute option)
+  value     - Value of certain nodes (input, textarea select)
+  text      - Text contained in selected element
+  html      - ?
+  array     - Array of objects representing matched elements
 
 ## HTTP Client
 
+Gets the response code, body and response headers from an url.
+Does follow redirects.
+
 ## HTTP Server
 
-## JSON Generator/Parser
+Simple HTTP server, triggers both "request" and "/requested/url" on 
+incoming requests.
+
+Example: 
+
+Listen on all requests
+```javascript
+httpNode.on("request", handlerNode);	// Receive message, pass to handler
+handlerNode.on("success", httpNode);	// Handle message, pass back
+```
+
+Listen on request to /api/enable/lamp
+```javascript
+httpNode.on("/api/enable/lamp", handlerNode);
+```
+
+
+Listen on requests to /api/<wildcard>/on
+```javascript
+httpNode.on("/api/:device/on", handlerNode);
+```
+
+In this case, handlerNode need to be a generic function that takes an extra 
+parameter (the wildcard).
+```javascript
+requestHandler = flow( "generic", function(msg, device) { 
+    msg.payload = 'turning on ' + device;
+    return msg;  
+});
+```
+
+The server responds to a request when it gets the message back. See first
+example above.
+
+## JSON Generator/Stringifier
+
+JSON parser and stringifier. When feeded with an object, payload is 
+stringified to JSON and vice versa.
 
 ## Process killer
+
+Kills the current process when receiving a message. Exit code is configurable
+through node config (exitCode), or through message property (also exitCode).
 
 ## Mail sender
 
