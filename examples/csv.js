@@ -1,12 +1,12 @@
 var 
-	// Initialize abstractor
-	flow = require('../lib')({ debug: true, verbose: true }),
+    // Initialize abstractor
+    flow = require("../lib")({ debug: true, verbose: true }),
 
-	// Create nodes
-	csvNode1 = flow( "csv", {} ),
-	csvNode2 = flow( "csv", { headers: false} ),
-	fileWriteNode = flow( "file-write", { path: './test.csv', flag: 'w'} ),
-	fileReadNode = flow( "file-read" );
+    // Create nodes
+    csvNode1 = flow( "csv", {} ),
+    csvNode2 = flow( "csv", { headers: false} ),
+    fileWriteNode = flow( "file-write", { path: "./test.csv", flag: "w"} ),
+    fileReadNode = flow( "file-read" );
 
 
 // Create json string, save it to file
@@ -20,5 +20,5 @@ fileReadNode.on("success", csvNode2);
 
 // Go!
 csvNode1.start( {
-	payload: ['lol"',"lal\r\nas\nd",123,'""lol""']
+    payload: ["lol\"","lal\r\nas\nd",123,"\"\"lol\"\""]
 });

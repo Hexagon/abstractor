@@ -1,8 +1,8 @@
 {
     "rules": {
         "indent": [
-            2,
-            "tab"
+            "error",
+            4
         ],
         "quotes": [
             2,

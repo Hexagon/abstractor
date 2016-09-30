@@ -1,6 +1,6 @@
 {
   "name": "abstractor",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "description": "Node.js abstraction layer and automation framework.",
   "author": "Hexagon <github.com/hexagon>",
   "contributors": [],
