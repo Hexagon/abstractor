@@ -22,11 +22,17 @@
     "node",
     "node-red"
   ],
+  "scripts": {
+    "test": "mocha"
+  },
   "dependencies": { 
     "croner": "*",
     "node-uuid": "*",
     "qbus": "*"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
   "license": "MIT"
 }
