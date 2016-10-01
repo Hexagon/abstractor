@@ -32,7 +32,8 @@
   },
   "devDependencies": {
     "mocha": "*",
-    "should": "*"
+    "should": "*",
+    "fast-csv": "*"
   },
   "engines" : { 
     "node" : ">=4.0.0" 
