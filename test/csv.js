@@ -25,71 +25,71 @@ THE SOFTWARE.
 "use strict";
 
 var should = require("should"),
-	Cron = require("../index.js");
+    Cron = require("../index.js");
 
 describe("CSV initialization", function () {
 
-	it("Factory should not throw", function () {
-		(function(done){
-			var 
-			    // Initialize abstractor
-			    factory = require("../lib")(),
+    it("Factory should not throw", function () {
+        (function(done){
+            var 
+                // Initialize abstractor
+                factory = require("../lib")(),
 
-			    // Create nodes
-			    csvNode1 = factory( "csv", {} ),
-			    csvNode2 = factory( "csv", {} );
+                // Create nodes
+                csvNode1 = factory( "csv", {} ),
+                csvNode2 = factory( "csv", {} );
 
-		}).should.not.throw();
-	});
+        }).should.not.throw();
+    });
 });
 
 describe("CSV usage", function () {
-	it("Running should not throw", function (done) {
-		(function(){
-			var 
-			    // Initialize abstractor
-			    flow = require("../lib")(),
+    it("Running should not throw", function (done) {
+        (function(){
+            var 
+                // Initialize abstractor
+                flow = require("../lib")(),
 
-			    // Create nodes
-			    csvNode1 = flow( "csv", {} ),
-			    testPayload = ["lol\"","lal\r\nas\nd",123,"\"\"lol\"\""],
-			    testDoneNode = flow( "generic", function (msg) {
-			    	done();
-			    });
+                // Create nodes
+                csvNode1 = flow( "csv", {} ),
+                testPayload = ["lol\"","lal\r\nas\nd",123,"\"\"lol\"\""],
+                testDoneNode = flow( "generic", function (msg) {
+                    done();
+                });
 
-			csvNode1.on("success", testDoneNode);
-			csvNode1.start( {
-			    payload: testPayload
-			});
+            csvNode1.on("success", testDoneNode);
+            csvNode1.start( {
+                payload: testPayload
+            });
 
-		}).should.not.throw();
-	});
+        }).should.not.throw();
+    });
 
-	it("Should return the same values", function (done) {
-		var 
-		    // Initialize abstractor
-		    flow = require("../lib")(),
+    it("Should return the same values", function (done) {
+        var 
+            // Initialize abstractor
+            flow = require("../lib")(),
 
-		    // Create nodes
-		    csvNode1 = flow( "csv", {} ),
-		    csvNode2 = flow( "csv", { headers: false } ),
-		    testPayload = [ ["lol\"","lal\r\nas\nd",123,"\"\"lol\"\""] ],
-		    testDoneNode = flow( "generic", function (msg) {
-		    	if (msg.payload[0][0] === testPayload[0][0]
-		    		&& msg.payload[0][1] === testPayload[0][1]
-		    		&& msg.payload[0][2] == testPayload[0][2]
-		    		&& msg.payload[0][3] === testPayload[0][3]) {
-		    		done();
-		    	} else {
-		    		done(new Error('Output did not equal input'));
-		    	}
-		    });
+            // Create nodes
+            csvNode1 = flow( "csv", {} ),
+            csvNode2 = flow( "csv", { headers: false } ),
+            testPayload = [ ["lol\"","lal\r\nas\nd",123,"\"\"lol\"\""] ],
+            testDoneNode = flow( "generic", function (msg) {
+                if (msg.payload[0][0] === testPayload[0][0]
+                    && msg.payload[0][1] === testPayload[0][1]
+                    && msg.payload[0][2] == testPayload[0][2]
+                    && msg.payload[0][3] === testPayload[0][3]) {
+                    done();
+                } else {
+                    done(new Error("Output did not equal input"));
+                }
+            });
 
-		csvNode1.on("success", csvNode2);
-		csvNode2.on("success", testDoneNode);
-		csvNode1.start( {
-		    payload: testPayload
-		});
-	});
+        csvNode1.on("success", csvNode2);
+        csvNode2.on("success", testDoneNode);
+        csvNode1.start( {
+            payload: testPayload
+        });
+    });
 
 });

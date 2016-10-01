@@ -25,80 +25,80 @@ THE SOFTWARE.
 "use strict";
 
 var should = require("should"),
-	Cron = require("../index.js");
+    Cron = require("../index.js");
 
 describe("JSON initialization", function () {
 
-	it("Factory should not throw", function () {
-		(function(done){
-			var 
-			    // Initialize abstractor
-			    factory = require("../lib")(),
+    it("Factory should not throw", function () {
+        (function(done){
+            var 
+                // Initialize abstractor
+                factory = require("../lib")(),
 
-			    // Create nodes
-			    jsonNode1 = factory( "json", {} ),
-			    jsonNode2 = factory( "json", {} );
+                // Create nodes
+                jsonNode1 = factory( "json", {} ),
+                jsonNode2 = factory( "json", {} );
 
-		}).should.not.throw();
-	});
+        }).should.not.throw();
+    });
 });
 
 describe("JSON usage", function () {
-	it("Running should not throw", function (done) {
-		(function(){
-			var 
-			    // Initialize abstractor
-			    flow = require("../lib")(),
+    it("Running should not throw", function (done) {
+        (function(){
+            var 
+                // Initialize abstractor
+                flow = require("../lib")(),
 
-			    // Create nodes
-			    jsonNode1 = flow( "json", {} ),
-			    testPayload = {
-			        hellu: "lol",
-			        lol: "lal",
-			        lil: 1
-			    },
-			    testDoneNode = flow( "generic", function (msg) {
-			    	done();
-			    });
+                // Create nodes
+                jsonNode1 = flow( "json", {} ),
+                testPayload = {
+                    hellu: "lol",
+                    lol: "lal",
+                    lil: 1
+                },
+                testDoneNode = flow( "generic", function (msg) {
+                    done();
+                });
 
-			jsonNode1.on("success", testDoneNode);
-			jsonNode1.start( {
-			    payload: testPayload
-			});
+            jsonNode1.on("success", testDoneNode);
+            jsonNode1.start( {
+                payload: testPayload
+            });
 
-		}).should.not.throw();
-	});
+        }).should.not.throw();
+    });
 
-	it("Should return the same values", function (done) {
-		var 
-		    // Initialize abstractor
-		    flow = require("../lib")(),
+    it("Should return the same values", function (done) {
+        var 
+            // Initialize abstractor
+            flow = require("../lib")(),
 
-		    // Create nodes
-		    jsonNode1 = flow( "json", {} ),
-		    jsonNode2 = flow( "json", {} ),
-		    testPayload = {
-		        hellu: "lol",
-		        lol: "lal",
-		        lel: "1",
-		        lil: 1
-		    },
-		    testDoneNode = flow( "generic", function (msg) {
-		    	if (msg.payload.hellu === testPayload.hellu
-		    		&& msg.payload.lol === testPayload.lol
-		    		&& msg.payload.lel === testPayload.lel
-		    		&& msg.payload.lil === testPayload.lil) {
-		    		done();
-		    	} else {
-		    		done(new Error('Output did not equal input'));
-		    	}
-		    });
+            // Create nodes
+            jsonNode1 = flow( "json", {} ),
+            jsonNode2 = flow( "json", {} ),
+            testPayload = {
+                hellu: "lol",
+                lol: "lal",
+                lel: "1",
+                lil: 1
+            },
+            testDoneNode = flow( "generic", function (msg) {
+                if (msg.payload.hellu === testPayload.hellu
+                    && msg.payload.lol === testPayload.lol
+                    && msg.payload.lel === testPayload.lel
+                    && msg.payload.lil === testPayload.lil) {
+                    done();
+                } else {
+                    done(new Error("Output did not equal input"));
+                }
+            });
 
-		jsonNode1.on("success", jsonNode2);
-		jsonNode2.on("success", testDoneNode);
-		jsonNode1.start( {
-		    payload: testPayload
-		});
-	});
+        jsonNode1.on("success", jsonNode2);
+        jsonNode2.on("success", testDoneNode);
+        jsonNode1.start( {
+            payload: testPayload
+        });
+    });
 
 });

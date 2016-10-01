@@ -25,42 +25,42 @@ THE SOFTWARE.
 "use strict";
 
 var should = require("should"),
-	Cron = require("../index.js");
+    Cron = require("../index.js");
 
 describe("Module initialization", function () {
 
-	it("Require should not throw", function () {
-		(function(){
-		    var abstractor = require("../lib");
-		}).should.not.throw();
-	});
+    it("Require should not throw", function () {
+        (function(){
+            var abstractor = require("../lib");
+        }).should.not.throw();
+    });
 
-	it("Factory with `new` should not throw", function () {
-		(function(){
-		    var abstractor = require("../lib"),
-		    	factory = new abstractor();
-		}).should.not.throw();
-	});
+    it("Factory with `new` should not throw", function () {
+        (function(){
+            var abstractor = require("../lib"),
+                factory = new abstractor();
+        }).should.not.throw();
+    });
 
-	it("Factory without `new` should not throw", function () {
-		(function(){
-		    var abstractor = require("../lib"),
-		    	factory = abstractor();
-		}).should.not.throw();
-	});
+    it("Factory without `new` should not throw", function () {
+        (function(){
+            var abstractor = require("../lib"),
+                factory = abstractor();
+        }).should.not.throw();
+    });
 
-	it("Factory with invalid configuration should throw", function () {
-		(function(){
-		    var abstractor = require("../lib"),
-		    	factory = abstractor('This is invalid');
-		}).should.throw();
-	});
+    it("Factory with invalid configuration should throw", function () {
+        (function(){
+            var abstractor = require("../lib"),
+                factory = abstractor("This is invalid");
+        }).should.throw();
+    });
 
-	it("Factory with valid configuration should not throw", function () {
-		(function(){
-		    var abstractor = require("../lib"),
-		    	factory = abstractor({ debug: false, verbose: true });
-		}).should.not.throw();
-	});
+    it("Factory with valid configuration should not throw", function () {
+        (function(){
+            var abstractor = require("../lib"),
+                factory = abstractor({ debug: false, verbose: true });
+        }).should.not.throw();
+    });
 
 });
