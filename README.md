@@ -78,16 +78,16 @@ For more; see examples/ folder.
 
 # Built in nodes
 
-## Message Cache
+### Message Cache
 
 In memory key/value storage, great for storing the last payload
 of a specific topic.
     
-## Cron scheduler
+### Cron scheduler
 
 Competent cron-like scheduler based on croner (github.com/hexagon/croner)
 
-## CSV Generator/Parser
+### CSV Generator/Parser
 
 CSV parser and generator. Parser uses fast-csv.
 
@@ -96,24 +96,24 @@ converted to CSV rows.
 
 If input payload is a string, the string is parsed to an array of objects.
 
-## Delay
+### Delay
 
 Waits for x milliseconds before passing the message.
 
-## Exec
+### Exec
 
 Executes a command, returns exit code, stdout and stderr.
 
-## File-Read
+### File-Read
 
 Reads a file, capable of reading first/last x rows and first/last x 
 characters.
     
-## File-Watch
+### File-Watch
 
 Watches a file for changes, emits a message on change.
     
-## File-Write
+### File-Write
 
 Writes payload (string/buffer) to a file, encoding and flag are configurable.
 
@@ -121,16 +121,16 @@ Possible flags:
    a  = append
    w  = overwrite
 
-## Generic node factory
+### Generic node factory
 
 Converts a regular function to a abstractor node.
 
-## Heartbeat
+### Heartbeat
 
 Monitors the frequency of messages received, outputs "timeout" when no 
 message has arrived in x ms.
     
-## HTML Parser
+### HTML Parser
 
 Parses the payload HTML and outputs an object representing the html.
 
@@ -143,12 +143,12 @@ The get-parameter can contain any of these:
   html      - ?
   array     - Array of objects representing matched elements
 
-## HTTP Client
+### HTTP Client
 
 Gets the response code, body and response headers from an url.
 Does follow redirects.
 
-## HTTP Server
+### HTTP Server
 
 Simple HTTP server, triggers both "request" and "/requested/url" on 
 incoming requests.
@@ -184,34 +184,61 @@ requestHandler = flow( "generic", function(msg, device) {
 The server responds to a request when it gets the message back. See first
 example above.
 
-## JSON Generator/Stringifier
+### JSON Generator/Stringifier
 
 JSON parser and stringifier. When feeded with an object, payload is 
 stringified to JSON and vice versa.
 
-## Process killer
+### Process killer
 
 Kills the current process when receiving a message. Exit code is configurable
 through node config (exitCode), or through message property (also exitCode).
 
-## Mail sender
+### Mail sender
 
-## Key-Value mapper
+Sends mail using nodemailer. Options are passed as is, see: 
 
-## MQTT Client
+https://github.com/nodemailer/nodemailer#set-up-smtp
 
-## MSSQL Client
+### Key-Value mapper
 
-## MySQL Client
+Replaces the values of configured column in a dataset with another value.
 
-## Array splitter
+The first time the node is invoked, it expects a map (key-valye object or
+array of key->value arrays) to be passed as message.payload.
 
-## Message stripper
+### MQTT Client
 
-## Telldus device controller
+Subscribe to topics, and send messages to a MQTT network. Supports 
+setting/getting qos and retain flag.
 
-## Telldus sensor reader
+### MSSQL Client
 
+No less, no more.
+
+### MySQL Client
+
+No less, no more.
+
+### Array splitter
+
+Splits an incoming array and emits one separate "item" message per item.
+
+If messages are redirected back into this module after they are processed,
+the module keeps track of when all messages are processed, and emit an
+"success" event.
+
+### Message stripper
+
+Removed unwanted properties before apssing the message firther.
+
+### Telldus device controller
+
+Listens for status changes, and sets status of a configured telldus device.
+
+### Telldus sensor reader
+
+Listens for sensor updates in telldus network.
 
 
 # License
