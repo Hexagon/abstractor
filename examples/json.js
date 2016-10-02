@@ -1,6 +1,6 @@
 var 
     // Initialize abstractor
-    flow = require("../lib")({ debug: true, verbose: true }),
+    flow = require("../lib")({ debug: true }),
 
     // Create nodes
     jsonNode1 = flow( "json", {} ),
