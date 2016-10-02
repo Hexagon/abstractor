@@ -9,6 +9,7 @@ Node.js abstraction layer and automation framework.
  * [Introduction](#introduction)
    * [Messages](#messages)
    * [Nodes](#nodes)
+   * [Examples](#examples)
    * [Installation](#installation)
      * [Dependencies](#dependencies)
    * [Debugging](#debugging)
@@ -82,6 +83,8 @@ Some nodes can both receive and emit messages. One such example is the json node
 
 The nodes connect to each other through pre-defined events, most nodes emit "success" or "failure" on completion. See the documentation for information on what each node can emit.
 
+## Examples
+
 To put it all together, an example that continously tail a file on changes and output the last 10 rows to the console.
 
 ```javascript
@@ -111,6 +114,8 @@ var
 watchNode.on("success", readNode);
 readNode.on("success", outputNode);
 ```
+
+More examples available at [/examples](examples/)
 
 ## Installation
 
@@ -171,16 +176,22 @@ For more; see examples/ folder.
 
 # Documentation
 
+Below is just a brief description of each of the nodes. For in-depth documentation, see the source files at [/lib/nodes/](lib/nodes/).
+
 ## Built in nodes
 
 ### Cache
 
 In memory key/value storage, great for storing the last payload
 of a specific topic.
+
+[more](lib/nodes/cache.js) ...
     
 ### Cron
 
 Competent cron-like scheduler based on croner (github.com/hexagon/croner)
+
+[more](lib/nodes/cron.js) ...
 
 ### CSV
 
@@ -191,23 +202,33 @@ converted to CSV rows.
 
 If input payload is a string, the string is parsed to an array of objects.
 
+[more](lib/nodes/csv.js) ...
+
 ### Delay
 
 Waits for x milliseconds before passing the message.
+
+[more](lib/nodes/delay.js) ...
 
 ### Exec
 
 Executes a command, returns exit code, stdout and stderr.
 
+[more](lib/nodes/exec.js) ...
+
 ### File-Read
 
 Reads a file, capable of reading first/last x rows and first/last x 
 characters.
-    
+
+[more](lib/nodes/file-read.js) ...
+
 ### File-Watch
 
 Watches a file for changes, emits a message on change.
-    
+
+[more](lib/nodes/file-watch.js) ...
+
 ### File-Write
 
 Writes payload (string/buffer) to a file, encoding and flag are configurable.
@@ -216,15 +237,21 @@ Possible flags:
    a  = append
    w  = overwrite
 
+[more](lib/nodes/file-write.js) ...
+
 ### Generic
 
 Converts a regular function to a abstractor node.
+
+[more](lib/nodes/generic.js) ...
 
 ### Heartbeat
 
 Monitors the frequency of messages received, outputs "timeout" when no 
 message has arrived in x ms.
-    
+
+[more](lib/nodes/heartbeat.js) ...
+
 ### HTML Parser
 
 Parses the payload HTML and outputs an object representing the html.
@@ -238,10 +265,14 @@ The get-parameter can contain any of these:
   html      - ?
   array     - Array of objects representing matched elements
 
+[more](lib/nodes/html.js) ...
+
 ### HTTP Client
 
 Gets the response code, body and response headers from an url.
 Does follow redirects.
+
+[more](lib/nodes/http-client.js) ...
 
 ### HTTP Server
 
@@ -261,7 +292,6 @@ Listen on request to /api/enable/lamp
 httpNode.on("/api/enable/lamp", handlerNode);
 ```
 
-
 Listen on requests to /api/<wildcard>/on
 ```javascript
 httpNode.on("/api/:device/on", handlerNode);
@@ -279,21 +309,29 @@ requestHandler = flow( "generic", function(msg, device) {
 The server responds to a request when it gets the message back. See first
 example above.
 
+[more](lib/nodes/http-server.js) ...
+
 ### JSON
 
 JSON parser and stringifier. When feeded with an object, payload is 
 stringified to JSON and vice versa.
+
+[more](lib/nodes/json.js) ...
 
 ### Kill
 
 Kills the current process when receiving a message. Exit code is configurable
 through node config (exitCode), or through message property (also exitCode).
 
+[more](lib/nodes/kill.js) ...
+
 ### Mail
 
 Sends mail using nodemailer. Options are passed as is, see: 
 
 https://github.com/nodemailer/nodemailer#set-up-smtp
+
+[more](lib/nodes/mail.js) ...
 
 ### Map
 
@@ -302,18 +340,26 @@ Replaces the values of configured column in a dataset with another value.
 The first time the node is invoked, it expects a map (key-valye object or
 array of key->value arrays) to be passed as message.payload.
 
+[more](lib/nodes/map.js) ...
+
 ### MQTT
 
 Subscribe to topics, and send messages to a MQTT network. Supports 
 setting/getting qos and retain flag.
 
+[more](lib/nodes/mqtt.js) ...
+
 ### MSSQL
 
 No less, no more.
 
+[more](lib/nodes/mssql.js) ...
+
 ### MySQL
 
 No less, no more.
+
+[more](lib/nodes/mysql.js) ...
 
 ### Split
 
@@ -323,17 +369,25 @@ If messages are redirected back into this module after they are processed,
 the module keeps track of when all messages are processed, and emit an
 "success" event.
 
+[more](lib/nodes/split.js) ...
+
 ### Strip
 
 Removed unwanted properties before apssing the message firther.
+
+[more](lib/nodes/strip.js) ...
 
 ### Telldus device
 
 Listens for status changes, and sets status of a configured telldus device.
 
+[more](lib/nodes/telldus-device.js) ...
+
 ### Telldus sensor
 
 Listens for sensor updates in telldus network.
+
+[more](lib/nodes/telldus-sensor.js) ...
 
 ## Third party nodes
 
