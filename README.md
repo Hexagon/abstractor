@@ -6,9 +6,44 @@
 
 Node.js abstraction layer and automation framework.
 
+ * [Introduction](#introduction)
+   * [Messages](#messages)
+   * [Nodes](#nodes)
+   * [Installation](#installation)
+     * [Dependencies](#dependencies)
+   * [Debugging](#debugging)
+ * [Documentation](#documentation)
+   * [Built in nodes](#built-in-nodes)
+     * [Cache](#cache)
+     * [Cron](#cron)
+     * [CSV](#csv)
+     * [Delay](#delay)
+     * [Exec](#exec)
+     * [File-read](#file-read)
+     * [File-watch](#file-watch)
+     * [File-write](#file-write)
+     * [Generic](#generic)
+     * [Heartbeat](#heartbeat)
+     * [HTML Parser](#html-parser)
+     * [HTTP Client](#http-client)
+     * [HTTP Server](#http-server)
+     * [JSON](#json)
+     * [Kill](#kill)
+     * [Mail](#mail)
+     * [Map](#map)
+     * [MQTT](#map)
+     * [MSSQL](#mssql)
+     * [MySQL](#mysql)
+     * [Split](#split)
+     * [Strip](#strip)
+     * [Telldus device](#telldus-device)
+     * [Telldus sensor](#telldus-sensor)
+   * [Third party nodes](#third-party-nodes)
+ * [License](#license)
+
 # Introduction
 
-The basic idea behind abstractor is that more or less standardised `messages` is passed between `nodes` to form an application.
+The basic idea behind abstractor is that more or less standardised [messages](#messages) is passed between [nodes](#nodes) to form an application.
 
 ## Messages
 
@@ -37,7 +72,7 @@ As an example, a message originating from the MQTT-node will look something like
 }
 ```
 
-Both path and flag can be set at `node` level too, see next section.
+Both path and flag can be set at [node](#nodes) level too, see next section.
 
 ## Nodes
 
@@ -138,16 +173,16 @@ For more; see examples/ folder.
 
 ## Built in nodes
 
-### Message Cache
+### Cache
 
 In memory key/value storage, great for storing the last payload
 of a specific topic.
     
-### Cron scheduler
+### Cron
 
 Competent cron-like scheduler based on croner (github.com/hexagon/croner)
 
-### CSV Generator/Parser
+### CSV
 
 CSV parser and generator. Parser uses fast-csv.
 
@@ -181,7 +216,7 @@ Possible flags:
    a  = append
    w  = overwrite
 
-### Generic node factory
+### Generic
 
 Converts a regular function to a abstractor node.
 
@@ -244,43 +279,43 @@ requestHandler = flow( "generic", function(msg, device) {
 The server responds to a request when it gets the message back. See first
 example above.
 
-### JSON Generator/Stringifier
+### JSON
 
 JSON parser and stringifier. When feeded with an object, payload is 
 stringified to JSON and vice versa.
 
-### Process killer
+### Kill
 
 Kills the current process when receiving a message. Exit code is configurable
 through node config (exitCode), or through message property (also exitCode).
 
-### Mail sender
+### Mail
 
 Sends mail using nodemailer. Options are passed as is, see: 
 
 https://github.com/nodemailer/nodemailer#set-up-smtp
 
-### Key-Value mapper
+### Map
 
 Replaces the values of configured column in a dataset with another value.
 
 The first time the node is invoked, it expects a map (key-valye object or
 array of key->value arrays) to be passed as message.payload.
 
-### MQTT Client
+### MQTT
 
 Subscribe to topics, and send messages to a MQTT network. Supports 
 setting/getting qos and retain flag.
 
-### MSSQL Client
+### MSSQL
 
 No less, no more.
 
-### MySQL Client
+### MySQL
 
 No less, no more.
 
-### Array splitter
+### Split
 
 Splits an incoming array and emits one separate "item" message per item.
 
@@ -288,18 +323,21 @@ If messages are redirected back into this module after they are processed,
 the module keeps track of when all messages are processed, and emit an
 "success" event.
 
-### Message stripper
+### Strip
 
 Removed unwanted properties before apssing the message firther.
 
-### Telldus device controller
+### Telldus device
 
 Listens for status changes, and sets status of a configured telldus device.
 
-### Telldus sensor reader
+### Telldus sensor
 
 Listens for sensor updates in telldus network.
 
+## Third party nodes
+
+It's up to you, see lib/modules/ for inspiration.
 
 # License
 
