@@ -14,9 +14,9 @@ The basic idea behind abstractor is that more or less standardised `messages` is
 
 A message normally consist of a topic and a payload, but can have any number of additional attributes depending on which node it has passed, or will pass. 
 
-When writing simple applications, you won't have to fiddle with messages manually. They will be silently passed between the nodes you set up.
+When writing simple applications, you won't have to fiddle with messages manually. They will silently pass between the nodes you set up.
 
-As an example, a message origination from the MQTT-node will look somthing like this:
+As an example, a message originating from the MQTT-node will look something like this ...
 
 ```javascript
 {
@@ -27,7 +27,7 @@ As an example, a message origination from the MQTT-node will look somthing like 
 }
 ```
 
-And a message indented on it's way to the file-write node will look like this:
+... and a message on it's way to the file-write node will look like this ...
 
 ```javascript
 {
@@ -41,13 +41,13 @@ Both path and flag can be set at `node` level too, see next section.
 
 ## Nodes
 
-Nodes are essentially customized functions, which are designed to execute a specific task as efficiently and transparently as possible.
+Nodes are essentially customized functions, which are designed to execute a specific task as efficiently and transparent as possible.
 
 Some nodes can both receive and emit messages. One such example is the json node, which converts the payload to a json string if it is a javascript object and vice versa.
 
-The nodes connect to eachother thorugh pre-defined events, most nodes emit "success" or "failure" on completion. See the documentation for information on what each node can emit.
+The nodes connect to each other through pre-defined events, most nodes emit "success" or "failure" on completion. See the documentation for information on what each node can emit.
 
-Putting it all together, a example that continously tail a file on changes and output the last 10 rows to the console.
+To put it all together, an example that continously tail a file on changes and output the last 10 rows to the console.
 
 ```javascript
 var
