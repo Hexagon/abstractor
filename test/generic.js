@@ -63,12 +63,15 @@ describe("Generic node", function () {
             // Create nodes
             genericNode1 = factory( "generic", function(msg, callback) { callback(msg); } ),
             genericNode2 = factory( "generic", function(msg) { 
+                if (msg.payload == "test") {
                     done(); 
                 } else {
+                    done(new Error("Message was not passed"));
                 }
             });
 
         genericNode1.on("success", genericNode2);
+        genericNode1.start({ payload: "test" });
 
     });
 
@@ -80,12 +83,15 @@ describe("Generic node", function () {
             // Create nodes
             genericNode1 = factory( "generic", function(msg) { return msg; } ),
             genericNode2 = factory( "generic", function(msg) { 
+                if (msg.payload == "test") {
                     done(); 
                 } else {
+                    done(new Error("Message was not passed"));
                 }
             });
 
         genericNode1.on("success", genericNode2);
+        genericNode1.start({ payload: "test" });
 
     });
 
@@ -96,13 +102,19 @@ describe("Generic node", function () {
             factory = require("../lib")(),
 
             // Create nodes
+            genericNode1 = factory( "generic", function(msg, callback) { msg.payload = "test2"; callback(msg); } ),
             genericNode2 = factory( "generic", function(msg) { 
+                if (msg.payload == "test2") {
                     done(); 
+                } else if (msg.payload == "test") {
+                    done(new Error("Message was not changed"));
                 } else {
+                    done(new Error("Message was not passed"));
                 }
             });
 
         genericNode1.on("success", genericNode2);
+        genericNode1.start({ payload: "test" });
 
     });
 
@@ -114,15 +126,21 @@ describe("Generic node", function () {
 
             // Create nodes
             genericNode1 = factory( "generic", function(msg) { 
+                msg.payload = "test2"; 
                 return msg; 
             }),
             genericNode2 = factory( "generic", function(msg) { 
+                if (msg.payload == "test2") {
                     done(); 
+                } else if (msg.payload == "test") {
+                    done(new Error("Message was not changed"));
                 } else {
+                    done(new Error("Message was not passed"));
                 }
             });
 
         genericNode1.on("success", genericNode2);
+        genericNode1.start({ payload: "test" });
 
     });
 });
