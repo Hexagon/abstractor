@@ -6,42 +6,89 @@
 
 Node.js abstraction layer and automation framework.
 
-Note that this is a fully working library, but it is work in progress. Expect compatibility breaks even between minor version bumps.
+# Introduction
 
+The basic idea behind abstractor is that more or less standardised `messages` is passed between `nodes` to form an application.
 
+## Messages
 
-# Installation
+A message normally consist of a topic and a payload, but can have any number of additional attributes depending on which node it has passed, or will pass. 
 
-## From npm
+When writing simple applications, you won't have to fiddle with messages manually. They will be silently passed between the nodes you set up.
+
+As an example, a message origination from the MQTT-node will look somthing like this:
+
+```javascript
+{
+	topic: "indoor/livingroom/roof/lights",
+	payload: "on",
+	qos: 2,
+	retain: false
+}
+```
+
+And a message indented on it's way to the file-write node will look like this:
+
+```javascript
+{
+	path: "~/abstractor.log",
+	flag: "a", 			// "a" == append, "w" == overwrite
+	payload: "This will be appended to abstractor.log"
+}
+```
+
+Both path and flag can be set at `node` level too, see next section.
+
+## Nodes
+
+Nodes are essentially customized functions, which are designed to execute a specific task as efficiently and transparently as possible.
+
+Some nodes can both receive and emit messages. One such example is the json node, which converts the payload to a json string if it is a javascript object and vice versa.
+
+The nodes connect to eachother thorugh pre-defined events, most nodes emit "success" or "failure" on completion. See the documentation for information on what each node can emit.
+
+Putting it all together, a example that continously tail a file on changes and output the last 10 rows to the console.
+
+```javascript
+var
+
+    // Initialize abstractor
+    abstractor = require("abstractor"),
+	
+    // Create node factory
+    factory = abstractor()
+
+    // Create nodes
+    
+    // - Create instance of file-watch node, tell the node to monitor `/var/log/syslog`
+    //   This node will emit "success" every time the file changes
+    watchNode = 	factory( "file-watch", { path: '/var/log/syslog' }),
+    
+    // - Create a file-read node, tell it to only read the last 10 rows.
+    //   On completion, "success" will be emitted.
+    readNode = 		factory( "file-read", { tail: 10 }),
+    
+    // - In this example, we create a generic node (function wrapper) that just print the payload
+    //   to the console.
+    outputNode = 	factory( "generic", function (msg) { console.log(msg.payload); });
+
+// Ok, the building blocks is ready, we just got to stack them up.
+watchNode.on("success", readNode);
+readNode.on("success", outputNode);
+```
+
+## Installation
+
+The simplest way to get Abstractor is through npm. Simply run the following in your command line from your project folder.
 
 ```npm install abstractor```
 
-## Dependencies
+### Dependencies
 
 Abstractor itself has very few dependencies. However, certain embedded modules dynamically includes third party libraries. As an example, The telldus modules need http://github.com/hexagon/telldus to work.
 
 The framework will raise an run time error if it is missing an dependency.
 
-
-
-# Examples 
-
-## Continuously tail a file
-```javascript
-var
-
-	// Initialize abstractor
-	factory = require('abstractor')(),
-
-	// Create nodes
-	watchNode = 	factory( "file-watch", { path: '/var/log/syslog' }),
-	readNode = 		factory( "file-read", { tail: 5 }),
-	outputNode = 	factory( "generic", function (msg) { console.log(msg.payload); });
-
-// Connect WatchNode -> ReadNode -> OutputNode
-watchNode.on("success", readNode);
-	readNode.on("success", outputNode);
-```
 
 ## Debugging
 
@@ -58,9 +105,22 @@ var
 // ...
 ```
 
+Will result in something like ...
+
+```
+[2016-10-02 21:50:12] CORE > Abstractor ready
+[2016-10-02 21:50:12] CORE > Imported node json on the fly.
+[2016-10-02 21:50:12] CORE > Imported node file-write on the fly.
+[2016-10-02 21:50:12] CORE > Imported node file-read on the fly.
+[2016-10-02 21:50:12] JSON > invoked
+[2016-10-02 21:50:12] JSON > success
+[2016-10-02 21:50:12] FILEWRITE > invoked
+[2016-10-02 21:50:12] FILEWRITE > success
+```
+
 ### Verbose
 
-Verbose debugging adds the actual message to each log entry.
+Verbose debugging adds the actual message to each log entry. 
 
 ```javascript
 var
@@ -74,9 +134,9 @@ var
 
 For more; see examples/ folder. 
 
+# Documentation
 
-
-# Built in nodes
+## Built in nodes
 
 ### Message Cache
 
