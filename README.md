@@ -193,6 +193,10 @@ Competent cron-like scheduler based on croner (github.com/hexagon/croner)
 
 [more](lib/nodes/cron.js) ...
 
+
+**Related examples:**
+ * [examples/heartbeat.js](examples/heartbeat.js)
+
 ### CSV
 
 CSV parser and generator. Parser uses fast-csv.
@@ -216,6 +220,9 @@ Executes a command, returns exit code, stdout and stderr.
 
 [more](lib/nodes/exec.js) ...
 
+**Related examples:**
+ * [examples/ping.js](examples/ping.js)
+
 ### File-Read
 
 Reads a file, capable of reading first/last x rows and first/last x 
@@ -223,11 +230,19 @@ characters.
 
 [more](lib/nodes/file-read.js) ...
 
+**Related examples:**
+ * [examples/json.js](examples/json.js)
+ * [examples/tail.js](examples/tail.js)
+ 
 ### File-Watch
 
 Watches a file for changes, emits a message on change.
 
 [more](lib/nodes/file-watch.js) ...
+
+
+**Related examples:**
+ * [examples/tail.js](examples/tail.js)
 
 ### File-Write
 
@@ -239,18 +254,31 @@ Possible flags:
 
 [more](lib/nodes/file-write.js) ...
 
+**Related examples:**
+ * [examples/json.js](examples/json.js)
+
 ### Generic
 
 Converts a regular function to a abstractor node.
 
 [more](lib/nodes/generic.js) ...
 
+**Related examples:**
+ * [examples/batchcollect.js](examples/batchcollect.js)
+ * [examples/mqttwsbridge.js](examples/mqttwsbridge.js)
+ * [examples/ping.js](examples/ping.js)
+ * [examples/tail.js](examples/tail.js)
+ 
+ 
 ### Heartbeat
 
 Monitors the frequency of messages received, outputs "timeout" when no 
 message has arrived in x ms.
 
 [more](lib/nodes/heartbeat.js) ...
+
+**Related examples:**
+ * [examples/heartbeat.js](examples/heartbeat.js)
 
 ### HTML Parser
 
@@ -311,12 +339,18 @@ example above.
 
 [more](lib/nodes/http-server.js) ...
 
+**Related examples:**
+ * [examples/ping.js](examples/ping.js)
+
 ### JSON
 
 JSON parser and stringifier. When feeded with an object, payload is 
 stringified to JSON and vice versa.
 
 [more](lib/nodes/json.js) ...
+
+**Related examples:**
+ * [examples/json.js](examples/json.js)
 
 ### Kill
 
@@ -349,6 +383,9 @@ setting/getting qos and retain flag.
 
 [more](lib/nodes/mqtt.js) ...
 
+**Related examples:**
+ * [examples/mqttwsbridge.js](examples/mqttwsbridge.js)
+
 ### MSSQL
 
 No less, no more.
@@ -371,6 +408,9 @@ the module keeps track of when all messages are processed, and emit an
 
 [more](lib/nodes/split.js) ...
 
+**Related examples:**
+ * [examples/batchcollect.js](examples/batchcollect.js)
+
 ### Strip
 
 Removed unwanted properties before apssing the message firther.
@@ -388,6 +428,24 @@ Listens for status changes, and sets status of a configured telldus device.
 Listens for sensor updates in telldus network.
 
 [more](lib/nodes/telldus-sensor.js) ...
+
+### WS Server
+
+Simple WS server.
+
+[more](lib/nodes/ws-server.js) ...
+
+**Related examples:**
+ * [examples/mqttwsbridge.js](examples/mqttwsbridge.js)
+
+### WS Client
+
+Reconnecting websocket client.
+
+[more](lib/nodes/ws-client.js) ...
+
+**Related examples:**
+ * [examples/wsclient.js](examples/wsclient.js)
 
 ## Third party nodes
 

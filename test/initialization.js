@@ -37,29 +37,25 @@ describe("Module initialization", function () {
 
     it("Factory with `new` should not throw", function () {
         (function(){
-            var abstractor = require("../lib"),
-                factory = new abstractor();
+            var abstractor = require("../lib")();
         }).should.not.throw();
     });
 
     it("Factory without `new` should not throw", function () {
         (function(){
-            var abstractor = require("../lib"),
-                factory = abstractor();
+            var abstractor = require("../lib")();
         }).should.not.throw();
     });
 
     it("Factory with invalid configuration should throw", function () {
         (function(){
-            var abstractor = require("../lib"),
-                factory = abstractor("This is invalid");
+            var abstractor = require("../lib")("This is invalid");
         }).should.throw();
     });
 
     it("Factory with valid configuration should not throw", function () {
         (function(){
-            var abstractor = require("../lib"),
-                factory = abstractor({ debug: false, verbose: true });
+            var abstractor = require("../lib")({ silent: true });
         }).should.not.throw();
     });
 
