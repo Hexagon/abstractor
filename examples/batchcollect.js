@@ -22,4 +22,4 @@ batchNode.on("item", syncNode);
 
 batchNode.on("success", debugNodeDone);
 
-batchNode.start({payload: [1,2,3,4,5,6,7,8,9,101,1,1,23,12,3,12,3,12,3,11,12]});
+batchNode.start( {payload: [1,2,3,4,5,6,7,8,9,101,1,1,23,12,3,12,3,12,3,11,12] } );

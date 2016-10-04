@@ -29,6 +29,7 @@ Node.js abstraction layer and automation framework.
      * [HTTP Client](#http-client)
      * [HTTP Server](#http-server)
      * [JSON](#json)
+     * [Junction](#junction)
      * [Kill](#kill)
      * [Mail](#mail)
      * [Map](#map)
@@ -351,6 +352,28 @@ stringified to JSON and vice versa.
 
 **Related examples:**
  * [examples/json.js](examples/json.js)
+
+### Junction
+ 
+Emits messages with incoming topic as event name.
+
+```javascript
+{ 
+    topic: "hellu", 
+    payload: <data>
+}
+```
+
+Will be passed with
+
+```javascript
+junctionNode.on( "hellu", <receiver> );
+```
+
+[more](lib/nodes/junction.js) ...
+
+**Related examples:**
+ * [examples/junction.js](examples/junction.js)
 
 ### Kill
 
