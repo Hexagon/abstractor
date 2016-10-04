@@ -342,6 +342,7 @@ example above.
 [more](lib/nodes/http-server.js) ...
 
 **Related examples:**
+ * [examples/httpserver.js](examples/httpserver.js)
  * [examples/ping.js](examples/ping.js)
 
 ### JSON
@@ -489,7 +490,7 @@ Reconnecting websocket client.
 
 ## Third party nodes
 
-It's up to you, see lib/modules/ for inspiration.
+It's up to you, see [lib/modules/](/lib/modules/) for inspiration.
 
 # License
 
