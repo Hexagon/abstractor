@@ -38,6 +38,7 @@ Node.js abstraction layer and automation framework.
      * [MySQL](#mysql)
      * [Split](#split)
      * [Strip](#strip)
+     * [Sun](#sun)
      * [Telldus device](#telldus-device)
      * [Telldus sensor](#telldus-sensor)
    * [Third party nodes](#third-party-nodes)
@@ -439,6 +440,22 @@ the module keeps track of when all messages are processed, and emit an
 Removed unwanted properties before apssing the message firther.
 
 [more](lib/nodes/strip.js) ...
+
+### Sun
+
+Emits a message on sun events.
+
+Possible triggers:
+ * sunrise
+ * sunset
+ * dusk
+ * night
+ * dawn
+
+[more](lib/nodes/sun.js) ...
+
+**Related examples:**
+ * [examples/sun.js](examples/sun.js)
 
 ### Telldus device
 
