@@ -6,7 +6,7 @@ var
     extend =    require("util")._extend,
 
     // Create nodes
-    telldusDeviceListenerNode = flow("telldus-device", { listen: true }),
+    telldusDeviceListenerNode = flow("telldus-device", { listen: true, raw: true }),
 
     telldusDevice5On = flow("telldus-device", { deviceId: 5, deviceAction: "turnOn" }),
     telldusDevice5Off = flow("telldus-device", { deviceId: 5, deviceAction: "turnOff" }),
