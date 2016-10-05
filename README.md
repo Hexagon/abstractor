@@ -41,6 +41,8 @@ Node.js abstraction layer and automation framework.
      * [Sun](#sun)
      * [Telldus device](#telldus-device)
      * [Telldus sensor](#telldus-sensor)
+     * [Websocket Server](#websocket-server)
+     * [Websocket Client](#websocket-client)
    * [Third party nodes](#third-party-nodes)
  * [License](#license)
 
@@ -470,7 +472,7 @@ Listens for sensor updates in telldus network.
 
 [more](lib/nodes/telldus-sensor.js) ...
 
-### WS Server
+### Websocket Server
 
 Simple WS server.
 
@@ -479,7 +481,7 @@ Simple WS server.
 **Related examples:**
  * [examples/mqttwsbridge.js](examples/mqttwsbridge.js)
 
-### WS Client
+### Websocket Client
 
 Reconnecting websocket client.
 
