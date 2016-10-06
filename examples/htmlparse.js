@@ -1,15 +1,27 @@
+"use strict";
+
 var 
-    // Initialize abstractor
-    flow = require("../lib")({ debug: true }),
+    // Initialize abstractor, we don't want any type of debug output
+    // Hence silent: true
+    f = require("../lib")({ silent: true }),
 
     // Create nodes
-    httpNode = flow("http-client"),
-    htmlNode = flow("html", { get: "object", selector: "a" } ),
-    debugNode = flow("generic", function (msg) { console.log(msg); });
+    // - Set up http client, url is passed as message topic, but could be passed here as on option (url: 'htt...')
+    http =  f( "http-client" /*,  { url: "http://myurl"} ^*/),
 
-// Get all links on page as objects
-httpNode.on("response", htmlNode);
-    htmlNode.on("success", debugNode);
+    // - Parse html document, extract all links
+    html =  f( "html", { get: "array", selector: "a" } ),
+
+    // - Split result array into individual messages
+    split = f( "split" ),
+
+    // - Output href (if such exist) to console
+    debug = f( "generic", (msg) => { console.log(msg.payload.attribs.href); } );
+
+// Create flow
+http.on("response", html);
+html.on("success", split);
+split.on("item", debug);
 
 // Manually invoke flow
-httpNode.invoke({ topic: "http://frekvenslista.com" });
+http.invoke({ topic: "http://en.wikipedia.org" });
