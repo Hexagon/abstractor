@@ -429,14 +429,10 @@ No less, no more.
 
 Splits an incoming array and emits one separate "item" message per item.
 
-If messages are redirected back into this module after they are processed,
-the module keeps track of when all messages are processed, and emit an
-"success" event.
-
 [more](lib/nodes/split.js) ...
 
 **Related examples:**
- * [examples/batchcollect.js](examples/batchcollect.js)
+ * [examples/queue.js](examples/queue.js)
 
 ### Strip
 
@@ -485,10 +481,22 @@ Simple WS server.
 
 Reconnecting websocket client.
 
-[more](lib/nodes/ws-client.js) ...
+[more](lib/nodes/queue.js) ...
 
 **Related examples:**
- * [examples/wsclient.js](examples/wsclient.js)
+ * [examples/queue.js](examples/queue.js)
+ * [examples/concurrentqueue.js](examples/concurrentqueue.js)
+
+
+### Queue
+
+Synchronous message queue. 
+
+Passes next message by emitting "item" when the previous has
+returned. Emits "drained" whenever queue becomes empty.
+
+The default is to process the queue synchronously, is is however possible to 
+allow concurrency by increasing "concurrency" option above the default of 1.
 
 ## Third party nodes
 
