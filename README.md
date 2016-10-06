@@ -43,6 +43,7 @@ Node.js abstraction layer and automation framework.
      * [Telldus sensor](#telldus-sensor)
      * [Websocket Server](#websocket-server)
      * [Websocket Client](#websocket-client)
+     * [Queue](#queue)
    * [Third party nodes](#third-party-nodes)
  * [License](#license)
 
@@ -487,7 +488,6 @@ Reconnecting websocket client.
  * [examples/queue.js](examples/queue.js)
  * [examples/concurrentqueue.js](examples/concurrentqueue.js)
 
-
 ### Queue
 
 Synchronous message queue. 
@@ -497,6 +497,11 @@ returned. Emits "drained" whenever queue becomes empty.
 
 The default is to process the queue synchronously, is is however possible to 
 allow concurrency by increasing "concurrency" option above the default of 1.
+
+[more](lib/nodes/queue.js) ...
+
+**Related examples:**
+ * [examples/queue.js](examples/queue.js)
 
 ## Third party nodes
 
