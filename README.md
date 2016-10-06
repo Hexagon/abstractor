@@ -416,13 +416,37 @@ setting/getting qos and retain flag.
 
 ### MSSQL
 
-No less, no more.
+Query can be set with <node options>.query OR msg.query OR msg.topic, 
+prioritized in that order.
+
+Parameters can be set with <node options>.parameters OR msg.parameters.
+
+{
+    topic: "SELECT @mystring as greeting, * FROM table WHERE id = @id",
+    parameters: {
+        id: 1531512,
+        mystring: "Hellu"
+    }
+}
 
 [more](lib/nodes/mssql.js) ...
 
 ### MySQL
 
-No less, no more.
+MySQL client node.
+
+Query can be set with <node options>.query OR msg.query OR msg.topic, 
+prioritized in that order.
+
+Parameters can be set with <node options>.parameters OR msg.parameters.
+
+{
+    topic: "SELECT :mystring as greeting, * FROM table WHERE id = :id",
+    parameters: {
+        id: 1531512,
+        mystring: "Hellu"
+    }
+}
 
 [more](lib/nodes/mysql.js) ...
 
@@ -482,11 +506,10 @@ Simple WS server.
 
 Reconnecting websocket client.
 
-[more](lib/nodes/queue.js) ...
+[more](lib/nodes/wsclient.js) ...
 
 **Related examples:**
- * [examples/queue.js](examples/queue.js)
- * [examples/concurrentqueue.js](examples/concurrentqueue.js)
+ * [examples/queue.js](examples/wsclient.js)
 
 ### Queue
 
