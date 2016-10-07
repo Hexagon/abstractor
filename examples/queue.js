@@ -12,20 +12,41 @@ var
 
     // - Applies a random delay to test synchronousness
     randomDelay =   flow("generic", function (msg, success) { 
-        setTimeout(function() { success(msg); }, Math.random()*1000); 
+        setTimeout(function() { success(msg); }, Math.random()*200); 
     }),
 
+    // - Print a message when the queue is started
+    debugStarted = flow("generic", function (msg) { 
+        this.log.info("STARTED", "Queue started!"); 
+        return msg; 
+    });
+
     // - Prints the received payload
-    debugNode =     flow("generic", function (msg) { 
-        console.log("Done: " + msg.payload); 
+    debug =     flow("generic", function (msg) { 
+        this.log.info("ITEM", msg.payload); 
+        return msg; 
+    }),
+
+    // - Print a message when the queue is done
+    debugDone = flow("generic", function (msg) { 
+        this.log.info("DONE", "All done!"); 
         return msg; 
     });
 
 // Create flow
-split.on("item", queue);                        // Send each item to queue
-    queue.on("item", randomDelay);              // When queue emits a new message, wait random ms before passing
-        randomDelay.on("success", debugNode);   // When delay has passed, print message.payload
-            debugNode.on("always", queue);      // ALWAYS pass message back to queue, this is the callback
+split.on("item", queue);                    // Send each item to queue
+    queue.on("started", debugStarted);      // Before the queue starts emitting items,  print a message
+    queue.on("item", randomDelay);          // When queue emits a new message, wait random ms before passing
+        randomDelay.on("success", debug);   // When delay has passed, print message.payload
+            debug.on("always", queue);      // ALWAYS pass message back to queue, this is the callback
+    queue.on("drained", debugDone)          // When the queue is drained, print a message
 
-// Manually invoke flow
-split.start( {payload: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21] } );
+// Put numbers 1-30 in queue using the split module
+split.start( {payload: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30] } );
+
+// Append 31-35 directly ont queue
+queue.start( {payload: 31 } );
+queue.start( {payload: 32 } );
+queue.start( {payload: 33 } );
+queue.start( {payload: 34 } );
+queue.start( {payload: 35 } );
