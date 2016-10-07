@@ -536,7 +536,7 @@ Reconnecting websocket client.
 [more](lib/nodes/wsclient.js) ...
 
 **Related examples:**
- * [examples/queue.js](examples/wsclient.js)
+ * [examples/wsclient.js](examples/wsclient.js)
 
 ### Queue
 
