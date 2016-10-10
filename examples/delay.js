@@ -1,6 +1,6 @@
 var 
     // Initialize abstractor
-    $ = require("../lib")({ debug: true }),
+    $ = require("../lib")(),
 
     // Create nodes
     cronerMsgNode1 = $( "cron", { "pattern": "0,27 * * * * *", "message": { "payload": "Message 1"} } ),

@@ -1,6 +1,6 @@
 var 
     // Initialize abstractor
-    flow = require("../lib")({ debug: true }),
+    flow = require("../lib")(),
 
     // Create nodes
     sunNode = flow( "sun", { latitude: 62.43, longitude: 17.38 }),

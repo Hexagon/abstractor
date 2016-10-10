@@ -1,6 +1,6 @@
 var 
     // Initialize abstractor
-    flow = require("../core")( { debug: true }),
+    flow = require("../core")(),
 
     // Create nodes
     telldusSensorNode = $("telldus-sensor"),

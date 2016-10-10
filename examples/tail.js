@@ -1,6 +1,6 @@
 var
     // Initialize abstractor
-    flow = require("../lib")({ debug: false, verbose: false }),
+    flow = require("../lib")({ logLevel: 5 }),
 
     filePath = "/var/log/syslog",
 

@@ -1,6 +1,6 @@
 var 
     // Initialize abstractor
-    flow = require("../lib")({ debug: true, verbose: true }),
+    flow = require("../lib")(),
 
     // Create nodes
     csvNode1 = flow( "csv", {} ),

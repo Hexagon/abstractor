@@ -1,6 +1,6 @@
 var 
     // Initialize abstractor
-    f = require("../lib")({ debug: false, verbose: false }),
+    f = require("../lib")({logLevel: 2}),
 
     // Create nodes
     split =     f("split"),

@@ -1,6 +1,6 @@
 var 
     // Initialize abstractor
-    flow = require("../lib")({ debug: true, verbose: false }),
+    flow = require("../lib")(),
 
     // Create nodes
     httpNode = flow( "http-server", { port: 8087 }),

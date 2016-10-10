@@ -1,7 +1,7 @@
 var 
 
     // Initialize abstractor
-    flow = require("../lib")(),
+    flow = require("../lib")({logLevel: 3}),
 
     // Create nodes
     // - Splits message.payload, emits each array item as a separate message
@@ -17,19 +17,19 @@ var
 
     // - Print a message when the queue is started
     debugStarted = flow("generic", function (msg) { 
-        this.log.info("STARTED", "Queue started!"); 
+        this.log.log("STARTED", "Queue started!"); 
         return msg; 
     });
 
     // - Prints the received payload
     debug =     flow("generic", function (msg) { 
-        this.log.info("ITEM", msg.payload); 
+        this.log.log("ITEM", msg.payload); 
         return msg; 
     }),
 
     // - Print a message when the queue is done
     debugDone = flow("generic", function (msg) { 
-        this.log.info("DONE", "All done!"); 
+        this.log.log("DONE", "All done!"); 
         return msg; 
     });
 

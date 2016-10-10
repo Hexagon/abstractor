@@ -37,13 +37,13 @@ describe("Module initialization", function () {
 
     it("Factory with `new` should not throw", function () {
         (function(){
-            var abstractor = require("../lib")();
+            var abstractor = require("../lib")( { logLevel: 2 } );
         }).should.not.throw();
     });
 
     it("Factory without `new` should not throw", function () {
         (function(){
-            var abstractor = require("../lib")();
+            var abstractor = require("../lib")( { logLevel: 2 } );
         }).should.not.throw();
     });
 

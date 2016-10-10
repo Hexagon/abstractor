@@ -1,6 +1,6 @@
 var 
     // Initialize abstractor
-    flow = require("../lib")({ debug: true }),
+    flow = require("../lib")(),
 
     // Utilities;
     extend =    require("util")._extend,

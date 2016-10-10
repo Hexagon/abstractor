@@ -1,12 +1,12 @@
 var 
     // Initialize abstractor
-    flow = require("../lib")({ debug: true });
+    flow = require("../lib")({ logLevel: 2});
 
     genError = flow("generic", function (msg) { 
     	this.log.warning("DEBUG", 'Woop');
-    	this.log.info("DEBUG", 'Hellu');
+    	this.log.notice("DEBUG", 'Hellu');
     	this.log.error("DEBUG", 'Woah!',"lol");
-    	this.log.info("DEBUG", "Alpha");
+    	this.log.log("DEBUG", "Alpha");
     	this.log.throw("DEBUG", "I'm outta here");
     });
 

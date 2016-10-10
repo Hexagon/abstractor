@@ -33,7 +33,7 @@ describe("Generic node", function () {
         (function(done){
             var 
                 // Initialize abstractor
-                factory = require("../lib")(),
+                factory = require("../lib")( { logLevel: 2 } ),
 
                 // Create nodes
                 genericNode = factory( "generic", function(msg) { } );
@@ -42,9 +42,10 @@ describe("Generic node", function () {
     });
 
     it("Return type callback should work", function (done) {
+
         var 
             // Initialize abstractor
-            factory = require("../lib")(),
+            factory = require("../lib")( { logLevel: 2 } ),
 
             // Create nodes
             genericNode1 = factory( "generic", function(msg) { return msg; } ),
@@ -55,10 +56,68 @@ describe("Generic node", function () {
 
     });
 
+    it("Omitting return should not invoke next", function (done) {
+
+        var 
+            // Initialize abstractor
+            factory = require("../lib")( { logLevel: 2 } ),
+
+            hasRun = false,
+
+            // Create nodes
+            genericNode1 = factory( "generic", function(msg) { } ),
+            genericNode2 = factory( "generic", function(msg) { hasRun = true; } );
+
+        genericNode1.on("success", genericNode2);
+        genericNode1.start({});
+
+        setImmediate(function() { if (!hasRun) done(); });
+
+    });
+
+    it("Returning undefined should not invoke next", function (done) {
+
+        var 
+            // Initialize abstractor
+            factory = require("../lib")( { logLevel: 2 } ),
+
+            hasRun = false,
+
+            // Create nodes
+            genericNode1 = factory( "generic", function(msg) { return undefined; } ),
+            genericNode2 = factory( "generic", function(msg) { hasRun = true; } );
+
+        genericNode1.on("success", genericNode2);
+        genericNode1.start({});
+
+        setImmediate(function() { if (!hasRun) done(); });
+
+    });
+
+    it("Returning should invoke next", function (done) {
+
+        var 
+            // Initialize abstractor
+            factory = require("../lib")( { logLevel: 2 } ),
+
+            hasRun = false,
+
+            // Create nodes
+            genericNode1 = factory( "generic", function(msg) { return msg; } ),
+            genericNode2 = factory( "generic", function(msg) { hasRun = true; } );
+
+        genericNode1.on("success", genericNode2);
+        genericNode1.start({});
+
+        setImmediate(function() { if (hasRun) done(); });
+
+    });
+
+
     it("Message should be passed when using callback", function (done) {
         var 
             // Initialize abstractor
-            factory = require("../lib")(),
+            factory = require("../lib")( { logLevel: 2 } ),
 
             // Create nodes
             genericNode1 = factory( "generic", function(msg, callback) { callback(msg); } ),
@@ -78,7 +137,7 @@ describe("Generic node", function () {
     it("Message should be passed when using return", function (done) {
         var 
             // Initialize abstractor
-            factory = require("../lib")(),
+            factory = require("../lib")( { logLevel: 2 } ),
 
             // Create nodes
             genericNode1 = factory( "generic", function(msg) { return msg; } ),
@@ -99,7 +158,7 @@ describe("Generic node", function () {
     it("Passed message should have changed when using callback", function (done) {
         var 
             // Initialize abstractor
-            factory = require("../lib")(),
+            factory = require("../lib")( { logLevel: 2 } ),
 
             // Create nodes
             genericNode1 = factory( "generic", function(msg, callback) { msg.payload = "test2"; callback(msg); } ),
@@ -122,7 +181,7 @@ describe("Generic node", function () {
     it("Passed message should have changed when using return", function (done) {
         var 
             // Initialize abstractor
-            factory = require("../lib")(),
+            factory = require("../lib")( { logLevel: 2 } ),
 
             // Create nodes
             genericNode1 = factory( "generic", function(msg) { 

@@ -1,6 +1,6 @@
 var
     // Initialize abstractor
-    flow =      require("../lib")({ debug: true }),
+    flow =      require("../lib")(),
 
     wsServerNode    = flow( "ws-server", { port: 5050 } ),
 

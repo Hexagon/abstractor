@@ -1,6 +1,6 @@
 var 
     // Initialize abstractor
-    $ = require("../lib")({ debug: true }),
+    $ = require("../lib")(),
 
     // Create nodes
     cronNode = $( "cron", { pattern: "*/2 * * * * *", maxRuns: 5 }),

@@ -138,15 +138,24 @@ The framework will raise an run time error if it is missing an dependency.
 
 ## Debugging
 
-### Basic
+### logLevel
 
-Basic debugging outputs a timestamped log everytime a node is invoked or triggers a message.
+The logger has 5 levels of verbosity
+
+ * 0 = Silent
+ * 1 = adds errors
+ * 2 = adds warnings
+ * 3 = adds logs
+ * 4 = adds notices (default)
+ * 5 = adds full message for each invoke
+
+Default mode (4) outputs a timestamped log everytime a node triggers a message.
 
 ```javascript
 var
 
 	// Initialize abstractor
-	factory = require('abstractor')({debug: true}),
+	factory = require('abstractor')({logLevel: 4}),
 
 // ...
 ```
@@ -158,23 +167,8 @@ Will result in something like ...
 [2016-10-02 21:50:12] CORE > Imported node json on the fly.
 [2016-10-02 21:50:12] CORE > Imported node file-write on the fly.
 [2016-10-02 21:50:12] CORE > Imported node file-read on the fly.
-[2016-10-02 21:50:12] JSON > invoked
 [2016-10-02 21:50:12] JSON > success
-[2016-10-02 21:50:12] FILEWRITE > invoked
 [2016-10-02 21:50:12] FILEWRITE > success
-```
-
-### Verbose
-
-Verbose debugging adds the actual message to each log entry. 
-
-```javascript
-var
-
-	// Initialize abstractor
-	factory = require('abstractor')({debug: true, verbose: true}),
-
-// ...
 ```
 
 

@@ -33,7 +33,7 @@ describe("CSV initialization", function () {
         (function(done){
             var 
                 // Initialize abstractor
-                factory = require("../lib")(),
+                factory = require("../lib")( { logLevel: 2 } ),
 
                 // Create nodes
                 csvNode1 = factory( "csv", {} ),
@@ -48,7 +48,7 @@ describe("CSV usage", function () {
         (function(){
             var 
                 // Initialize abstractor
-                flow = require("../lib")(),
+                flow = require("../lib")( { logLevel: 2 } ),
 
                 // Create nodes
                 csvNode1 = flow( "csv", {} ),
@@ -68,7 +68,7 @@ describe("CSV usage", function () {
     it("Should return the same values", function (done) {
         var 
             // Initialize abstractor
-            flow = require("../lib")(),
+            flow = require("../lib")( { logLevel: 2 } ),
 
             // Create nodes
             csvNode1 = flow( "csv", {} ),

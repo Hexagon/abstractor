@@ -33,7 +33,7 @@ describe("JSON initialization", function () {
         (function(done){
             var 
                 // Initialize abstractor
-                factory = require("../lib")(),
+                factory = require("../lib")( { logLevel: 2 } ),
 
                 // Create nodes
                 jsonNode1 = factory( "json", {} ),
@@ -48,7 +48,7 @@ describe("JSON usage", function () {
         (function(){
             var 
                 // Initialize abstractor
-                flow = require("../lib")(),
+                flow = require("../lib")( { logLevel: 2 } ),
 
                 // Create nodes
                 jsonNode1 = flow( "json", {} ),
@@ -72,7 +72,7 @@ describe("JSON usage", function () {
     it("Should return the same values", function (done) {
         var 
             // Initialize abstractor
-            flow = require("../lib")(),
+            flow = require("../lib")( { logLevel: 2 } ),
 
             // Create nodes
             jsonNode1 = flow( "json", {} ),

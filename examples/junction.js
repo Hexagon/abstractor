@@ -1,6 +1,6 @@
 var 
     // Initialize abstractor
-    flow = require("../lib")({ debug: true }),
+    flow = require("../lib")(),
 
     junctionNode = flow("junction"),
     doneNode = flow("generic", function (msg) {  console.log("Done:", msg); });

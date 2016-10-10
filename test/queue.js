@@ -31,29 +31,13 @@ describe("Message passing", function () {
 
     it("Double callbacks should not throw", function () {
         (function() {
-            var f = require("../lib")({ debug: false }),
+            var f = require("../lib")({logLevel: 1}),
 
                 queue = f( "queue" ),
                 async = f( "generic" , function (msg, cbk) { cbk(msg);cbk(msg); });
 
             queue.on( "item", async);
-                async.on( "success", queue );
-            
-            queue.start( {payload: "Test"} );
-            
-        }).should.not.throw();
-        
-    });
-
-   it("Delayed callbacks should work throw", function () {
-        (function() {
-            var f = require("../lib")({ debug: false }),
-
-                queue = f( "queue" ),
-                async = f( "generic" , function (msg, cbk) { cbk(msg);cbk(msg); });
-
-            queue.on( "item", async);
-                async.on( "success", queue );
+            async.on( "success", queue );
             
             queue.start( {payload: "Test"} );
             

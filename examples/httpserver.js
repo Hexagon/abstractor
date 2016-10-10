@@ -4,7 +4,7 @@ var
     path = require("path"),
 
     // Initialize abstractor
-    flow =      require("../lib")({debug: true}),
+    flow =      require("../lib")(),
 
     // Set up node instances
     httpServer = flow( "http-server", { port: 8083 } ),

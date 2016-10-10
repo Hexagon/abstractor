@@ -30,7 +30,7 @@ var should = require("should"),
 describe("Message passing", function () {
 
     it("Messages should not be traced upstream", function () {
-        var f = require("../lib")(),
+        var f = require("../lib")( { logLevel: 2 } ),
 
             node1 = f( "generic" , function (msg, callback) { msg.payload = 1; callback(msg); }),
             node5 = f( "generic" , function (msg) { return msg; }),
@@ -39,16 +39,16 @@ describe("Message passing", function () {
             node4 = f( "generic" , function (msg) { msg.__trace.length.should.equal(2); });
 
         node1.on( "success", node2);
-        node1.on( "success", node5)
+        node1.on( "success", node5);
         node1.on( "success", node3);
-            node3.on( "success", node4);
+        node3.on( "success", node4);
 
         node1.start({});
 
     });
 
     it("Messages should not change upstream", function () {
-        var f = require("../lib")(),
+        var f = require("../lib")( { logLevel: 2 } ),
 
             node1 = f( "generic" , function (msg, callback) { callback(msg); }),
             node5 = f( "generic" , function (msg) { msg.payload = 2; return msg; }),
@@ -57,16 +57,16 @@ describe("Message passing", function () {
             node4 = f( "generic" , function (msg) { msg.payload.should.equal(1); });
 
         node1.on( "success", node2);
-        node1.on( "success", node5)
+        node1.on( "success", node5);
         node1.on( "success", node3);
-            node3.on( "success", node4);
+        node3.on( "success", node4);
 
         node1.start({payload: 1});
 
     });
 
     it("Messages should change downstream", function () {
-        var f = require("../lib")(),
+        var f = require("../lib")( { logLevel: 2 } ),
 
             node1 = f( "generic" , function (msg, callback) { callback(msg); }),
             node5 = f( "generic" , function (msg) { msg.payload = 2; return msg; }),
@@ -75,16 +75,16 @@ describe("Message passing", function () {
             node4 = f( "generic" , function (msg) { msg.payload.should.equal(3); });
 
         node1.on( "success", node2);
-        node1.on( "success", node5)
+        node1.on( "success", node5);
         node1.on( "success", node3);
-            node3.on( "success", node4);
+        node3.on( "success", node4);
 
         node1.start({payload: 1});
 
     });
 
     it("Messages should not be traced twice", function () {
-        var f = require("../lib")(),
+        var f = require("../lib")( { logLevel: 2 } ),
 
             node1 = f( "generic" , function (msg, callback) { callback(msg); }),
             node2 = f( "generic" , function (msg, callback) { this.traceback(msg).should.equal(false); });
@@ -97,7 +97,7 @@ describe("Message passing", function () {
 
 
     it("Messages should not be traced twice 2", function (next) {
-        var f = require("../lib")(),
+        var f = require("../lib")( { logLevel: 2 } ),
 
 
             node1 = f( "generic" , function (msg, callback) { callback(msg); }),
@@ -112,7 +112,7 @@ describe("Message passing", function () {
 
         queue.on( "started", first);
         queue.on( "item", item);
-            item.on( "success", queue);
+        item.on( "success", queue);
 
         queue.on( "drained", done);
 

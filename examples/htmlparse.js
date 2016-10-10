@@ -3,7 +3,7 @@
 var 
     // Initialize abstractor, we don't want any type of debug output
     // Hence silent: true
-    f = require("../lib")({ silent: true }),
+    f = require("../lib")({ logLevel: 0 }),
 
     // Create nodes
     // - Set up http client, url is passed as message topic, but could be passed here as on option (url: 'htt...')
