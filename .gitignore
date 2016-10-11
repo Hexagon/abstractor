@@ -79,3 +79,4 @@ $RECYCLE.BIN/
 *.lnk
 test.csv
 test.json
+.npmignore
