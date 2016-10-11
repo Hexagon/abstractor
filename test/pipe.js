@@ -32,7 +32,7 @@ describe("Message passing", function () {
     it("Messages should not be traced upstream", function () {
         var f = require("../lib")( { logLevel: 2 } ),
 
-            node1 = f( "generic" , function (msg, callback) { msg.payload = 1; callback(msg); }),
+            node1 = f( "generic" , function (msg) { msg.payload = 1; return msg; }),
             node5 = f( "generic" , function (msg) { return msg; }),
             node2 = f( "generic" , function (msg, callback) { callback(msg); }),
             node3 = f( "generic" , function (msg, callback) { callback(msg); }),
@@ -99,12 +99,11 @@ describe("Message passing", function () {
     it("Messages should not be traced twice 2", function (next) {
         var f = require("../lib")( { logLevel: 2 } ),
 
-
             node1 = f( "generic" , function (msg, callback) { callback(msg); }),
             split = f( "split" ),
             queue = f( "queue" ),
             first = f( "generic", function (msg) { return msg; }),
-            item = f( "generic", function (msg) { return msg; }),
+            item = f( "generic", function (msg) {  return msg; }),
             done = f( "generic", function (msg) { msg.__trace.length.should.equal(3); next(); } );
 
         node1.on( "success", split);

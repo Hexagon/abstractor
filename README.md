@@ -36,6 +36,7 @@ Node.js abstraction layer and automation framework.
      * [MQTT](#map)
      * [MSSQL](#mssql)
      * [MySQL](#mysql)
+     * [Retry](#retry)
      * [Split](#split)
      * [Strip](#strip)
      * [Sun](#sun)
@@ -444,6 +445,33 @@ Parameters can be set with <node options>.parameters OR msg.parameters.
 }
 
 [more](lib/nodes/mysql.js) ...
+
+
+### Retry
+
+Very simple node that clear process.exitCode and emit success. 
+
+Useful when you need to retry an action that have emitted error.
+
+Number of retry is set in node config
+
+```javascript
+
+// ...
+
+delay = f( "delay", { delay: 5000 });
+retry = f( "retry", { retries: 5 }s);
+
+// ...
+
+// If MySQL emit error, retry after 5 seconds
+mysql.on("error", 
+    retry.on("success", 
+      delay.on("success", mysql)));
+
+```
+
+[more](lib/nodes/retry.js) ...
 
 ### Split
 
