@@ -1,13 +1,11 @@
 var 
     // Initialize abstractor
     flow = require("../lib")(),
-
-    junctionNode = flow("junction"),
-    doneNode = flow("generic", function (msg) {  console.log("Done:", msg); });
+    junctionNode = flow("junction");
 
 // Connect yksi and kaksi, but not kolme
-junctionNode.on("yksi", doneNode);
-junctionNode.on("kaksi", doneNode);
+junctionNode.on("yksi", "Yksi done!");
+junctionNode.on("kaksi", "Kaksi done!");
 
 // Go!
 junctionNode.start({

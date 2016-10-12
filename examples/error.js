@@ -1,6 +1,6 @@
 var 
     // Initialize abstractor
-    flow = require("../lib")({ logLevel: 2});
+    flow = require("../lib")({ logLevel: 5});
 
     genError = flow("generic", function (msg) { 
     	this.log.warning("DEBUG", 'Woop');

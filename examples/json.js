@@ -8,7 +8,6 @@ var
     fileWriteNode = flow( "file-write", { path: "./test.json", flag: "w"} ),
     fileReadNode = flow( "file-read" );
 
-
 // Create json string, save it to file
 jsonNode1.on("success", fileWriteNode);
 

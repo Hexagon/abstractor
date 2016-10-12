@@ -9,5 +9,6 @@ var
 
 // Cron node emits a message every fifth second
 cronNode.on("success", heartbeatNode);
+
     // Heartbeat node expects a message every seventh second, if the messages stop arriving, kill the process
     heartbeatNode.on("timeout", killNode);
