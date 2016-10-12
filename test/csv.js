@@ -36,8 +36,7 @@ describe("CSV initialization", function () {
                 factory = require("../lib")( { logLevel: 2 } ),
 
                 // Create nodes
-                csvNode1 = factory( "csv", {} ),
-                csvNode2 = factory( "csv", {} );
+                csv = factory( "csv", {} );
 
         }).should.not.throw();
     });
