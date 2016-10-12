@@ -4,31 +4,20 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
 
-		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="{{site.baseurl}}/css/style.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-		<script src="/js/main.js"></script>
+		<script src="{{site.baseurl}}/js/main.js"></script>
 		{% seo %}
-
-		{% if jekyll.environment == 'production' %}
-			<script>
-				(function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){
-				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-			})(window,document,"script","//www.google-analytics.com/analytics.js","ga");
-				ga("create", "{{ site.google_analytics_key }}", "auto");
-				ga("send", "pageview");
-			</script>
-		{% endif %}
 	</head>
 	<body>
 		<header>
 			<h1>
-				<a href="/"><img src="/images/emblem.svg" width="40" height="40" alt="{{ site.title }} logo"></a>
+				<a href="/"><img src="{{site.baseurl}}/images/emblem.svg" width="40" height="40" alt="{{ site.title }} logo"></a>
 				{{ site.title }}
 				<button type="button" class="open-nav" id="open-nav"></button>
 			</h1>
 
-			<form action="/search/" method="get">
+			<form action="{{site.baseurl}}/search/" method="get">
 				<input type="text" name="q" id="search-input" placeholder="Search">
 				<input type="submit" value="Search" style="display: none;">
 			</form>
