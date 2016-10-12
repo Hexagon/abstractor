@@ -4,19 +4,19 @@ position: 2
 right_code: |
   ~~~ json
   {
-    topic: "indoor/livingroom/roof/lights",
-    payload: "on",
-    qos: 2,
-    retain: false
+    "topic": "indoor/livingroom/roof/lights",
+    "payload": "on",
+    "qos": 2,
+    "retain": false
   }
   ~~~
   {: title="Message 1" }
 
   ~~~ json
   {
-    path: "~/abstractor.log",
-    flag: "a",      // "a" == append, "w" == overwrite
-    payload: "This will be appended to abstractor.log"
+    "path": "~/abstractor.log",
+    "flag": "a",
+    "payload": "This will be appended to abstractor.log"
   }
   ~~~
   {: title="Message 2" }
