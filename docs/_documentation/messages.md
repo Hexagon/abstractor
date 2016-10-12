@@ -2,24 +2,24 @@
 title: Messages
 position: 2
 right_code: |
+  ~~~ javascript
+  {
+    topic: "indoor/livingroom/roof/lights",
+    payload: "on",
+    qos: 2,
+    retain: false
+  }
   ~~~
   {: title="Message 1" }
-  ~~~ javascript
-{
-  topic: "indoor/livingroom/roof/lights",
-  payload: "on",
-  qos: 2,
-  retain: false
-}
-  ~~~
-  {: title="Message 2" }
 
   ~~~ javascript
-{
-  path: "~/abstractor.log",
-  flag: "a",      // "a" == append, "w" == overwrite
-  payload: "This will be appended to abstractor.log"
-}
+  {
+    path: "~/abstractor.log",
+    flag: "a",      // "a" == append, "w" == overwrite
+    payload: "This will be appended to abstractor.log"
+  }
+  ~~~
+  {: title="Message 2" }
 ---
 
 A message normally consist of a topic and a payload, but can have any number of additional attributes depending on which node it has passed, or will pass. 
