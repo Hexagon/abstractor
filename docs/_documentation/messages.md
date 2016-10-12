@@ -2,7 +2,7 @@
 title: Messages
 position: 2
 right_code: |
-  ~~~ javascript
+  ~~~ json
   {
     topic: "indoor/livingroom/roof/lights",
     payload: "on",
@@ -12,7 +12,7 @@ right_code: |
   ~~~
   {: title="Message 1" }
 
-  ~~~ javascript
+  ~~~ json
   {
     path: "~/abstractor.log",
     flag: "a",      // "a" == append, "w" == overwrite

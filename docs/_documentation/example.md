@@ -1,7 +1,10 @@
 ---
 title: Example
 position: 4
-right_code: |
+---
+
+To put it all together, an example that continously tail a file on changes and output the last 10 rows to the console.
+
   ~~~ javascript
   var
 
@@ -29,7 +32,3 @@ right_code: |
   watchNode.on("success", readNode);
   readNode.on("success", outputNode);
   ~~~
-  {: title="Full example" }
----
-
-To put it all together, an example that continously tail a file on changes and output the last 10 rows to the console.
