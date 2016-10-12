@@ -1,67 +1,57 @@
-## Jekyll Boilerplate
+# Aviator
 
-![unmaintained](http://img.shields.io/badge/status-unmaintained-red.png)
+API documentation template for Jekyll. Browse through a [live demo](#TODO).
+Start documenting your API with this configurable theme.
 
-A jekyll starting point. Based on [Jekyll Base](https://github.com/danielmcgraw/Jekyll-Base)
-by Daniel McGraw.
+![Aviator template screenshot](images/_screenshot.png)
 
-### Structure
+Aviator was made by [CloudCannon](http://cloudcannon.com/), the Cloud CMS for Jekyll.
+Find more templates and themes at [Jekyll Tips](http://jekyll.tips/templates/).
 
-```
-.
-├── _includes
-├── _layouts
-│   ├── default.html
-│   └── post.html
-├── _posts
-│   └── 1970-01-01-placeholder-post.md
-├── .gitignore
-├── README.md
-├── _config.yml
-└── index.html
-```
+Learn Jekyll with step-by-step tutorials and videos at [Jekyll Tips](http://jekyll.tips/).
 
-### _config.yml
+## Features
 
-This is where you will be putting your Jekyll configuration options. If this
-file is omitted Jekyll will use its defualts to build your site. You can find
-the configuration options and default configuration
-[here](https://github.com/mojombo/jekyll/wiki/configuration).
+* Three column layout
+* Fully responsive 
+* Full text search
+* Pre-styled components
+* Auto-generated navigation based on category
+* Optimised for editing in [CloudCannon](http://cloudcannon.com/)
+* SEO tags
+* Google Analytics
 
-### _layouts
+## Setup
 
-This folder is where all the layout templates are stored.
+1. Add your site and author details in `_config.yml`.
+2. Get a workflow going to see your site's output (with [CloudCannon](https://app.cloudcannon.com/) or Jekyll locally).
 
-#### default.html
+## Develop
 
-This is the base layout template. There are no naming conventions, but if you
-choose to change this file's name make sure you update all the layout
-references in your file's YAML Front Matter blocks. To learn more about the use
-of YAML Front Matter check out [this
-page](https://github.com/mojombo/jekyll/wiki/yaml-front-matter).
+Aviator was built with [Jekyll](http://jekyllrb.com/) version 3.1.6, but should support newer versions as well.
 
-#### post.html
+Install the dependencies with [Bundler](http://bundler.io/):
 
-This is the base post template.
+~~~bash
+$ bundle install
+~~~
 
-### _posts
+Run `jekyll` commands through Bundler to ensure you're using the right versions:
 
-This folder is where all the posts are stored. Notice the naming convention
-that is used. You will want to name your files with the the publish date
-preceeding the posts title all seperated by dashes
-(Year-Month-Day-Title-Of-The-Post.md). The post date that you see is pulled
-straight from this filename so make sure you lable your files right.
+~~~bash
+$ bundle exec jekyll serve
+~~~
 
-#### 1970-01-01-placeholder-post.md
+## Editing
 
-This is a simple blog post using markdown. To learn more about markdown check
-out the [markdown syntax
-documentation](http://daringfireball.net/projects/markdown/syntax). Also notice
-that there is YAML Front Matter in this file specifying the layout it will use
-and the title of the post. Layout is one of a couple predefined global
-variables. You can also specify custom variables in the YAML Front Matter.
+Aviator is already optimised for adding, updating and removing documentation pages in CloudCannon.
 
-### index.html
+### Usage
 
-This is used to render the site's index. It is essntially a post loop wrapped
-in your base layout.
+* Each section is a different collection, this helps organise your content.
+* Set the order of the collections with the position field in collection configuration in `_config.yml`.
+* Set the order of the documents inside a collection by setting the position in front matter.
+
+### Search
+
+* Add `excluded_in_search: true` to any documentation page's front matter to exclude that page in the search results.

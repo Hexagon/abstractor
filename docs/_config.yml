@@ -1,1 +1,37 @@
-markdown: rdiscount
+# ----
+# Site
+
+title: Abstractor
+description: Jekyll template for API documentation.
+url: https://hexagon.github.io/abstractor
+
+collections:
+  documentation:
+    title: Documentation
+    position: 1
+  api:
+    title: APIs
+    position: 2
+gems:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+exclude:
+  - readme.md
+  - LICENCE
+  
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: default
+
+# -----
+# Build
+
+
+# -----------
+# CloudCannon
+
+version: 3.0.3
