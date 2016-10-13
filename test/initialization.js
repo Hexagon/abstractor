@@ -55,7 +55,7 @@ describe("Module initialization", function () {
 
     it("Factory with valid configuration should not throw", function () {
         (function(){
-            var abstractor = require("../lib")({ silent: true });
+            var abstractor = require("../lib")({ logLevel: 2 });
         }).should.not.throw();
     });
 
