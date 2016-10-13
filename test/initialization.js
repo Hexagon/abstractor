@@ -24,8 +24,7 @@ THE SOFTWARE.
 
 "use strict";
 
-var should = require("should"),
-    Cron = require("../index.js");
+var should = require("should");
 
 describe("Module initialization", function () {
 
