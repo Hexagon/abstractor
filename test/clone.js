@@ -244,17 +244,15 @@ describe("Deep Extend / Clone (lib/vendor/clone.js)", function () {
         clonedSuperString = clone(mySuperString);
 
         clonedSuperString.should.equal("test");
-        //clonedSuperString.mySubString.should.equal("subtest");
+        clonedSuperString.mySubString.should.equal("subtest");
 
         clonedSuperString.mySubString = "subchanged";
-        //clonedSuperString.mySubString.should.equal("subchanged");
+        clonedSuperString.mySubString.should.equal("subchanged");
 
         mySuperString.should.equal("test");
         
-        // ToDo! custom properties of for example new String()
-        //       is lost in copying
-
-         // mySuperString.mySubString.should.equal("subtest");
+        // ToDo! subobjects of wierd objects (e.g. String, is copied by reference)
+        //mySuperString.mySubString.should.equal("subtest");
 
     });
 
