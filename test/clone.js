@@ -252,7 +252,38 @@ describe("Deep Extend / Clone (lib/vendor/clone.js)", function () {
         mySuperString.should.equal("test");
         
         // ToDo! subobjects of wierd objects (e.g. String, is copied by reference)
-        //mySuperString.mySubString.should.equal("subtest");
+        mySuperString.mySubString.should.equal("subtest");
+
+    });
+
+
+    it("Number object with custom property (array) with object object with date", function () {
+        
+        var mySuperNumber = new Number(42),
+            clonedSuperNumber;
+
+        // Make mySuperNumber fucked up!
+        mySuperNumber.a = [{ d: new Date()}];
+        mySuperNumber.a[0].d.setHours(1);
+        mySuperNumber.a[0].d.subProp = "Hellu!";
+
+        // Clone
+        clonedSuperNumber = clone(mySuperNumber);
+
+        // Change wierd stuff of the cloned instance
+        clonedSuperNumber.a[1] = 'Added';
+        clonedSuperNumber.a[0].d.setHours(2);
+        clonedSuperNumber.a[0].d.subProp = "Changed!";
+
+        // Verify everything worked as expected
+        should.equal(mySuperNumber.a[1], undefined);
+        should.equal(clonedSuperNumber.a[1], "Added");
+
+        should.equal(mySuperNumber.a[0].d.getHours(), 1);
+        should.equal(clonedSuperNumber.a[0].d.getHours(), 2);
+
+        should.equal(mySuperNumber.a[0].d.subProp, "Hellu!");
+        should.equal(clonedSuperNumber.a[0].d.subProp, "Changed!");
 
     });
 
