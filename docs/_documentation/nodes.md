@@ -1,6 +1,5 @@
 ---
 title: Nodes
-position: 3
 ---
 
 Nodes are essentially customized functions, which are designed to execute a specific task as efficiently and transparent as possible.

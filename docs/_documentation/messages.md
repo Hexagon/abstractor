@@ -1,6 +1,5 @@
 ---
 title: Messages
-position: 2
 right_code: |
   ~~~ json
   {

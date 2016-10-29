@@ -71,7 +71,7 @@ function getClosestHeader() {
   top = window.scrollY,
   $last = $links.first();
 
-  if (top < 300) {
+  if (top < 100) {
     return $last;
   }
 
@@ -89,7 +89,7 @@ function getClosestHeader() {
       if ($anchor.length > 0) {
         var offset = $anchor.offset();
 
-        if (top < offset.top - 300) {
+        if (top < offset.top - 100) {
           return $last;
         }
 

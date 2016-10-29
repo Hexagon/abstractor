@@ -9,8 +9,8 @@ collections:
   documentation:
     title: Documentation
     position: 1
-  api:
-    title: APIs
+  nodes:
+    title: Nodes
     position: 2
     
 gems:
