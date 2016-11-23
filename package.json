@@ -25,20 +25,20 @@
   "scripts": {
     "test": "mocha"
   },
-  "dependencies": { 
+  "dependencies": {
+    "colors": "*",
     "croner": "*",
-    "node-uuid": "*",
     "qbus": "*",
     "suncalc": "*",
-    "colors": "*"
+    "uuid": "^3.0.0"
   },
   "devDependencies": {
     "mocha": "*",
     "should": "*",
     "fast-csv": "*"
   },
-  "engines" : { 
-    "node" : ">=4.0.0" 
+  "engines": {
+    "node": ">=4.0.0"
   },
   "license": "MIT"
 }
