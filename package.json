@@ -1,6 +1,6 @@
 {
   "name": "abstractor",
-  "version": "1.0.0-rc.3",
+  "version": "1.0.0-rc.4",
   "description": "Node.js abstraction layer and automation framework.",
   "author": "Hexagon <github.com/hexagon>",
   "contributors": [],
@@ -30,7 +30,8 @@
     "croner": "*",
     "qbus": "*",
     "suncalc": "*",
-    "uuid": "^3.0.0"
+    "uuid": "^3.0.0",
+    "klon": "*"
   },
   "devDependencies": {
     "mocha": "*",
